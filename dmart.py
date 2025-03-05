@@ -1,14 +1,16 @@
 import pandas as pd
 import sqlalchemy as sal
+import os 
 
 #selecting the file location
-filepath = "C:/MyGitHub_Projects/dmart_product_analysis/dataset/DMart.csv"
+datasetFilePath=os.path.dirname(__file__)+"/dataset/DMart.csv"
 
 #loading the file
 def loadcsvfiletodataframe():
-     
+   # print('my Dataset path :',datasetFilePath)
+    
     #load data to dataframe    
-    dataframe=pd.read_csv(filepath) 
+    dataframe=pd.read_csv(datasetFilePath) 
     #print(dataframe)
 
     #removing unwanted columns
@@ -61,11 +63,9 @@ def loadcsvfiletodataframe():
     cleaneddataframe['discountedprice'].fillna(0,inplace=True)
     #print(cleaneddataframe)
 
-     #drop all rows where name is null
+    #drop all rows where name is null
     cleaneddataframe.dropna(subset=['name'],inplace=True)
     #print(cleaneddataframe)
-
-    
 
     #create a connection to mysql
     engine=sal.create_engine("mysql+pymysql://root:Gayathri_123@localhost/dmart") 
