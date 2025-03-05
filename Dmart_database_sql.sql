@@ -31,3 +31,8 @@ where name is null;
 
 select * from products
 where price is null;
+
+#truncate table products
+
+alter table products
+add  discount_percentage float;
